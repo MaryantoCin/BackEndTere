@@ -23,7 +23,7 @@
         <input type="text" name="leader_birthplace" value="{{$datas->leader_birthplace}}"><br>
 
         <label>leader_birthdate</label>
-        <input type="date" name="leader_birthdate" value="{{$datas->leader_birthplace}}"><br>
+        <input type="date" name="leader_birthdate" value="{{$datas->leader_birthdate}}"><br>
 
         <label>leader_number</label>
         <input type="tel" name="leader_number" value="{{$datas->leader_number}}"><br>
@@ -53,7 +53,7 @@
         <input type="text" name="member1_birthplace" value="{{$datas->member1_birthplace}}"><br>
 
         <label>member1_birthdate</label>
-        <input type="date" name="member1_birthdate" value="{{$datas->member1_birthplace}}"><br>
+        <input type="date" name="member1_birthdate" value="{{$datas->member1_birthdate}}"><br>
 
         <label>member1_number</label>
         <input type="tel" name="member1_number" value="{{$datas->member1_number}}"><br>
@@ -83,7 +83,7 @@
         <input type="text" name="member2_birthplace" value="{{$datas->member2_birthplace}}"><br>
 
         <label>member2_birthdate</label>
-        <input type="date" name="member2_birthdate" value="{{$datas->member2_birthplace}}"><br>
+        <input type="date" name="member2_birthdate" value="{{$datas->member2_birthdate}}"><br>
 
         <label>member2_number</label>
         <input type="tel" name="member2_number" value="{{$datas->member2_number}}"><br>
