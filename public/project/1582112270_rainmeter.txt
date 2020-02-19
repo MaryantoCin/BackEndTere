@@ -1,0 +1,8 @@
+[BatteryPercent]
+Measure=Plugin
+Plugin=PowerPlugin
+PowerState=Status
+IfEqualValue=1
+IfEqualAction=[!ActivateConfig "Midi\Visualizer" "Visualizer.ini"]
+IfAboveValue=1
+IfAboveAction=[!DeactivateConfig "Midi\Visualizer" "Visualizer.ini"]

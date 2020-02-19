@@ -36,7 +36,7 @@
 
         <label>leader_cv</label>
         <input type="file" name="leader_cv"><br>
-
+        
         <label>leader_project</label>
         <input type="file" name="leader_project"><br>
 

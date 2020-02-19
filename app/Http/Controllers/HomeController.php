@@ -25,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $datas = User::find($user->id);
+        // dd($datas);
+        return view('home',compact('datas'));
     }
 
     public function edit()
@@ -65,7 +68,7 @@ class HomeController extends Controller
             request()->file('member1_project')->move('project',$name_member1_project);
             $data['member1_project'] = $name_member1_project;
         }
-        
+
         if(request()->hasFile('member2_cv')){
             $name_member2_cv = time()."_".request()->file('member2_cv')->getClientOriginalName();
             request()->file('member2_cv')->move('cv',$name_member2_cv);
@@ -82,6 +85,50 @@ class HomeController extends Controller
         // dd($data);
 
         return redirect('/home');
+    }
+
+    public function download_leader_cv(Request $request, User $user)
+    {
+        $user = Auth::user();
+        
+        $path = '/cv/'.$user->leader_cv;
+        
+        return response()->download(public_path($path));
+    }
+
+    public function download_leader_project(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $path = '/project/'.$user->leader_project;
+        return response()->download(public_path($path));
+    }
+
+    public function download_member1_cv(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $path = '/cv/'.$user->member1_cv;
+        return response()->download(public_path($path));
+    }
+
+    public function download_member1_project(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $path = '/project/'.$user->member1_project;
+        return response()->download(public_path($path));
+    }
+
+    public function download_member2_cv(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $path = '/cv/'.$user->member2_cv;
+        return response()->download(public_path($path));
+    }
+
+    public function download_member2_project(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $path = '/project/'.$user->member2_project;
+        return response()->download(public_path($path));
     }
 
 }
