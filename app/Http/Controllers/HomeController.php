@@ -39,9 +39,10 @@ class HomeController extends Controller
     
     public function update(Request $request, User $user)
     {
+        $user = Auth::user();
         $data = $request->all();
         $user->update($data);
-        dd($data);
+        // dd($data);
 
         return redirect('/home');
     }
