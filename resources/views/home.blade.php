@@ -126,5 +126,12 @@
     </form>
 @endif
 
+<form action="{{url('payment/')}}" method="post" enctype="multipart/form-data">
+    @csrf
+    {{ method_field('PUT') }}
+    <input type="file" name="payment_image">
+    <button type="submit">Submit Payment</button>
+</form>
+
 
 

@@ -34,6 +34,9 @@
             <th>Member2 Github</th>
             <th>Member2 CV</th>
             <th>Member2 Project</th>
+            <th>Payment Image</th>
+            <th>Payment Status</th>
+            <th>Verify Payment</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
@@ -115,6 +118,26 @@
                             <button type="submit">Download member2_project</button>
                         </form>
                     @endif
+                    </td>
+                    <td>
+                        @if($data->payment_image != null)
+                            <img src="{{ url('/payment/'.$data->payment_image) }}" width="20px" height="20px">
+                        @endif
+                    </td>
+                    <td>
+                    @if($data->payment_status == null){
+                        <a>Not Paid</a>
+                    }@else{
+                        <a>Paid</a>
+                    }
+                    @endif
+                    </td>
+                    <td>
+                        <form action="{{route('verify.payment',$data)}}" method="POST">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <button type="submit">Verify Payment</button>
+                        </form>
                     </td>
                     <td>
                         <form action="{{route('admin.edit',$data)}}" method="get">

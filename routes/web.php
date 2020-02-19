@@ -22,6 +22,8 @@ Route::get('/edit','HomeController@edit',function(){
     //
 })->middleware('auth');
 Route::put('/update/{user}','HomeController@update');
+Route::put('/payment','HomeController@payment');
+Route::put('/update/payment/{user}','HomeController@verify_payment')->name('verify.payment');
 Route::get('/download/leader_cv/{user}','HomeController@download_leader_cv');
 Route::get('/download/leader_project/{user}','HomeController@download_leader_project');
 Route::get('/download/member1_cv/{user}','HomeController@download_member1_cv');

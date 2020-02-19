@@ -95,6 +95,21 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
+    public function payment(Request $request, User $user)
+    {
+        $user = Auth::user();
+        $data = $request->all();
+        // dd($data);
+        if(request()->hasFile('payment_image')){
+            $name = time()."_".request()->file('payment_image')->getClientOriginalName();
+            request()->file('payment_image')->move('payment',$name);
+            $data['payment_image'] = $name;
+        }
+        // dd($data);
+        $user->update($data);
+        return redirect('/home');
+    }
+
     public function download_leader_cv(Request $request, User $user)
     {
         $user = Auth::user();
@@ -194,4 +209,11 @@ class HomeController extends Controller
         $user->delete();
         return redirect('/home');
     }
+
+    public function verify_payment(Request $request, User $user)
+    {
+        $user->update(['payment_status'=>1]);
+        return redirect('/home');
+    }
+
 }
