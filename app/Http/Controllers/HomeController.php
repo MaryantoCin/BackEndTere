@@ -26,9 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $datas = User::find($user->id);
-        // dd($datas);
-        return view('home',compact('datas'));
+        if($user->email == "eeo@bncc.net"){
+            $datas = User::all();
+            // dd($datas);
+            return view('admin',compact('datas'));
+        }
+        else{
+            $datas = User::find($user->id);
+            return view('home',compact('datas'));
+        }
+        
     }
 
     public function edit()
@@ -45,6 +52,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $data = $request->all();
 
+        dd($data);
         if(request()->hasFile('leader_cv')){
             $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
             request()->file('leader_cv')->move('cv',$name_leader_cv);
@@ -82,7 +90,7 @@ class HomeController extends Controller
         }
 
         $user->update($data);
-        // dd($data);
+        
 
         return redirect('/home');
     }
@@ -90,9 +98,8 @@ class HomeController extends Controller
     public function download_leader_cv(Request $request, User $user)
     {
         $user = Auth::user();
-        
+        // dd($user);
         $path = '/cv/'.$user->leader_cv;
-        
         return response()->download(public_path($path));
     }
 
@@ -131,4 +138,39 @@ class HomeController extends Controller
         return response()->download(public_path($path));
     }
 
+    public function admin_download_leader_cv(Request $request, User $user)
+    {
+        $path = '/cv/'.$user->leader_cv;
+        return response()->download(public_path($path));
+    }
+
+    public function admin_download_leader_project(Request $request, User $user)
+    {
+        $path = '/project/'.$user->leader_project;
+        return response()->download(public_path($path));
+    }
+    
+    public function admin_download_member1_cv(Request $request, User $user)
+    {
+        $path = '/cv/'.$user->member1_cv;
+        return response()->download(public_path($path));
+    }
+
+    public function admin_download_member1_project(Request $request, User $user)
+    {
+        $path = '/project/'.$user->member1_project;
+        return response()->download(public_path($path));
+    }
+    
+    public function admin_download_member2_cv(Request $request, User $user)
+    {
+        $path = '/cv/'.$user->member2_cv;
+        return response()->download(public_path($path));
+    }
+
+    public function admin_download_member2_project(Request $request, User $user)
+    {
+        $path = '/project/'.$user->member2_project;
+        return response()->download(public_path($path));
+    }
 }

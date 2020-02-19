@@ -126,24 +126,34 @@ class RegisterController extends Controller
             'member2_github' => $data['member2_github'],
         ]);
 
+        // dd($data);
+
         if(request()->hasFile('leader_cv')){
             $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
             request()->file('leader_cv')->move('cv',$name_leader_cv);
             $user->update(['leader_cv'=>$name_leader_cv]);
         }
 
-        if(request()->hasFile('leader_cv')){
-            $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
-            request()->file('leader_cv')->move('cv',$name_leader_cv);
-            $user->update(['leader_cv'=>$name_leader_cv]);
+        if(request()->hasFile('leader_project')){
+            $name_leader_project = time()."_".request()->file('leader_project')->getClientOriginalName();
+            request()->file('leader_project')->move('project',$name_leader_project);
+            $user->update(['leader_project'=>$name_leader_project]);
+        }
+
+        
+        if(request()->hasFile('member1_cv')){
+            $name_member1_cv = time()."_".request()->file('member1_cv')->getClientOriginalName();
+            request()->file('member1_cv')->move('cv',$name_member1_cv);
+            $user->update(['member1_cv'=>$name_member1_cv]);
         }
 
         if(request()->hasFile('member1_project')){
             $name_member1_project = time()."_".request()->file('member1_project')->getClientOriginalName();
-            request()->file('member1_cv')->move('cv',$name_member1_project);
+            request()->file('member1_project')->move('project',$name_member1_project);
             $user->update(['member1_project'=>$name_member1_project]);
         }
 
+        
         if(request()->hasFile('member2_cv')){
             $name_member2_cv = time()."_".request()->file('member2_cv')->getClientOriginalName();
             request()->file('member2_cv')->move('cv',$name_member2_cv);
@@ -152,9 +162,10 @@ class RegisterController extends Controller
 
         if(request()->hasFile('member2_project')){
             $name_member2_project = time()."_".request()->file('member2_project')->getClientOriginalName();
-            request()->file('member2_cv')->move('cv',$name_member2_project);
+            request()->file('member2_project')->move('project',$name_member2_project);
             $user->update(['member2_project'=>$name_member2_project]);
         }
+
         return $user;
     }
 }
