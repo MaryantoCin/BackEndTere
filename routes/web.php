@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/edit','HomeController@edit',function(){
+    //
+})->middleware('auth');
+Route::put('/update/{team}','HomeController@update');

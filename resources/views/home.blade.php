@@ -21,3 +21,7 @@
     </div>
 </div>
 @endsection
+
+<a href="/edit">Edit</a>
+
+

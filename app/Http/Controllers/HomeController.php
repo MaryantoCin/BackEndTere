@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,24 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        $userid = $user->id;
+        $username = $user->name;
+        $datas = User::find($userid);
+        return view('edit',compact('datas','userid','username'));
+    }
+    
+    public function update(Request $request, User $user)
+    {
+        $data = $request->all();
+        $user->update($data);
+        dd($data);
+
+        return redirect('/home');
     }
 
 }

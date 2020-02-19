@@ -96,7 +96,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -127,39 +127,33 @@ class RegisterController extends Controller
         ]);
 
         if(request()->hasFile('leader_cv')){
-            $leader_cv = request()->file('leader_cv')->getClientOriginalName();
-            request()->file('leader_cv')->storeAs('team_data', $user->id.'/'.$leader_cv, '');
-            $user->update(['leader_cv'=>$leader_cv]);
+            $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
+            request()->file('leader_cv')->move('cv',$name_leader_cv);
+            $user->update(['leader_cv'=>$name_leader_cv]);
         }
 
-        if(request()->hasFile('leader_project')){
-            $leader_project = request()->file('leader_project')->getClientOriginalName();
-            request()->file('leader_project')->storeAs('team_data', $user->id.'/'.$leader_project, '');
-            $user->update(['leader_project'=>$leader_project]);
-        }
-        
-        if(request()->hasFile('member1_cv')){
-            $member1_cv = request()->file('member1_cv')->getClientOriginalName();
-            request()->file('member1_cv')->storeAs('team_data', $user->id.'/'.$member1_cv, '');
-            $user->update(['member1_cv'=>$member1_cv]);
+        if(request()->hasFile('leader_cv')){
+            $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
+            request()->file('leader_cv')->move('cv',$name_leader_cv);
+            $user->update(['leader_cv'=>$name_leader_cv]);
         }
 
         if(request()->hasFile('member1_project')){
-            $member1_project = request()->file('member1_project')->getClientOriginalName();
-            request()->file('member1_project')->storeAs('team_data', $user->id.'/'.$member1_project, '');
-            $user->update(['member1_project'=>$member1_project]);
+            $name_member1_project = time()."_".request()->file('member1_project')->getClientOriginalName();
+            request()->file('member1_cv')->move('cv',$name_member1_project);
+            $user->update(['member1_project'=>$name_member1_project]);
         }
 
         if(request()->hasFile('member2_cv')){
-            $member2_cv = request()->file('member2_cv')->getClientOriginalName();
-            request()->file('member2_cv')->storeAs('team_data', $user->id.'/'.$member2_cv, '');
-            $user->update(['member2_cv'=>$member2_cv]);
+            $name_member2_cv = time()."_".request()->file('member2_cv')->getClientOriginalName();
+            request()->file('member2_cv')->move('cv',$name_member2_cv);
+            $user->update(['member2_cv'=>$name_member2_cv]);
         }
 
         if(request()->hasFile('member2_project')){
-            $member2_project = request()->file('member2_project')->getClientOriginalName();
-            request()->file('member2_project')->storeAs('team_data', $user->id.'/'.$member2_project, '');
-            $user->update(['member2_project'=>$member2_project]);
+            $name_member2_project = time()."_".request()->file('member2_project')->getClientOriginalName();
+            request()->file('member2_cv')->move('cv',$name_member2_project);
+            $user->update(['member2_project'=>$name_member2_project]);
         }
         return $user;
     }

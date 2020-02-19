@@ -85,10 +85,10 @@
                         <label>leader_github</label>
                         <input type="text" name="leader_github"><br>
 
-                        <label>leader_cv</label>
+                        <label>leader_cv *optional</label>
                         <input type="file" name="leader_cv"><br>
 
-                        <label>leader_project</label>
+                        <label>leader_project *optional</label>
                         <input type="file" name="leader_project"><br>
 
                         <label>member1_name</label>
@@ -115,10 +115,10 @@
                         <label>member1_github</label>
                         <input type="text" name="member1_github"><br>
 
-                        <label>member1_cv</label>
+                        <label>member1_cv *optional</label>
                         <input type="file" name="member1_cv"><br>
 
-                        <label>member1_project</label>
+                        <label>member1_project *optional</label>
                         <input type="file" name="member1_project"><br>
 
                         <label>member2_name</label>
@@ -145,10 +145,10 @@
                         <label>member2_github</label>
                         <input type="text" name="member2_github"><br>
 
-                        <label>member2_cv</label>
+                        <label>member2_cv *optional</label>
                         <input type="file" name="member2_cv"><br>
 
-                        <label>member2_project</label>
+                        <label>member2_project *optional</label>
                         <input type="file" name="member2_project"><br>
 
                         <div class="form-group row mb-0">
