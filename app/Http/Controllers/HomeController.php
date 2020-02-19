@@ -52,7 +52,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $data = $request->all();
 
-        dd($data);
+        // dd($data);
         if(request()->hasFile('leader_cv')){
             $name_leader_cv = time()."_".request()->file('leader_cv')->getClientOriginalName();
             request()->file('leader_cv')->move('cv',$name_leader_cv);
@@ -172,5 +172,20 @@ class HomeController extends Controller
     {
         $path = '/project/'.$user->member2_project;
         return response()->download(public_path($path));
+    }
+
+    public function admin_edit(Request $request, User $user)
+    {
+        if(Auth::user()->email == "eeo@bncc.net"){
+            $datas = $user;
+            return view('admin_edit',compact('datas'));
+        }
+    }
+
+    public function admin_update(Request $request, User $user)
+    {
+        $data = $request->all();
+        $user->update($data);
+        return redirect('/home');
     }
 }

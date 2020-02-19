@@ -34,6 +34,7 @@
             <th>Member2 Github</th>
             <th>Member2 CV</th>
             <th>Member2 Project</th>
+            <th>Edit</th>
         </thead>
         <tbody>
             @foreach($datas as $data)
@@ -113,6 +114,12 @@
                             <button type="submit">Download member2_project</button>
                         </form>
                     @endif
+                    </td>
+                    <td>
+                        <form action="{{route('admin.edit',$data)}}" method="get">
+                            @csrf
+                            <button type="submit">Edit</button>
+                        </form>
                     </td>
                 </tr>
             @endif
