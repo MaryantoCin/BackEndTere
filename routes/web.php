@@ -36,4 +36,5 @@ Route::get('/dl/member2_cv/{user}','HomeController@admin_download_member2_cv')->
 Route::get('/dl/member2_project/{user}','HomeController@admin_download_member2_project')->name('adl.member2_project');
 Route::get('/edit/{user}','HomeController@admin_edit')->name('admin.edit');
 Route::put('/edit/update/{user}','HomeController@admin_update')->name('admin.update');
+Route::delete('/delete/{user}','HomeController@admin_delete')->name('admin.delete');
 

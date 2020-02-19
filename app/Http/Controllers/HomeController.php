@@ -188,4 +188,10 @@ class HomeController extends Controller
         $user->update($data);
         return redirect('/home');
     }
+
+    public function admin_delete(Request $request, User $user)
+    {
+        $user->delete();
+        return redirect('/home');
+    }
 }
