@@ -1,5 +1,8 @@
 <?php
 
+use App\Notifications\TaskCompleted;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +15,9 @@
 */
 
 Route::get('/', function () {
+    // User::find(1)->notify(new TaskCompleted);
+    $users = User::find(1);
+    Notification::send($users,new TaskCompleted());
     return view('welcome');
 });
 
