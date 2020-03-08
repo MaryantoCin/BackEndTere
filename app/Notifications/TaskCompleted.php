@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TaskCompleted extends Notification
+class TaskCompleted extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -40,10 +40,7 @@ class TaskCompleted extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('BNCC Hackathon', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->view('alert');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Notifications\TaskCompleted;
 use App\User;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,19 @@ use App\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/emailtesting',function(){
+    return view('alert');
+});
 Route::get('/', function () {
-    // User::find(1)->notify(new TaskCompleted);
-    $users = User::find(1);
-    Notification::send($users,new TaskCompleted());
+    $when = Carbon::now()->addSeconds(10);
+    User::find(1)->notify((new TaskCompleted)->delay($when));
+    // $users = User::find(1);
+    // Notification::send($users,new TaskCompleted());
     return view('welcome');
 });
-
+Route::get('/alert',function(){
+    return view('alert');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
